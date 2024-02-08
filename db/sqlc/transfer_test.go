@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"github.com/hafizxd/simple_bank/util"
 	"testing"
 	"time"
@@ -76,6 +77,7 @@ func TestDeleteTransfer(t *testing.T) {
 	require.NoError(t, err)
 
 	transfer2, err := testQueries.GetAccount(context.Background(), transfer1.ID)
+	fmt.Println(">> transfer2: ", transfer2)
 	require.Error(t, err)
 	require.EqualError(t, err, sql.ErrNoRows.Error())
 	require.Empty(t, transfer2)
