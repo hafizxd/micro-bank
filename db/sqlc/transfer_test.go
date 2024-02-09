@@ -73,6 +73,7 @@ func TestUpdateTransfer(t *testing.T) {
 
 func TestDeleteTransfer(t *testing.T) {
 	transfer1 := createRandomTransfer(t)
+	fmt.Println(">> transfer1: ", transfer1)
 	err := testQueries.DeleteTransfer(context.Background(), transfer1.ID)
 	require.NoError(t, err)
 
