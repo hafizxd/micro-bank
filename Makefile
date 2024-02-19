@@ -34,7 +34,7 @@ server:
 	go run main.go
 
 mock:
-	mockgen -package mockdb -destination db/mock/store.go github.com/hafizxd/simple_bank/db/sqlc Store
+	mockgen -package mockdb -destination db/mock/store.go github.com/hafizxd/micro-bank/db/sqlc Store
 
 db_docs:
 	dbdocs build doc/db.dbml
@@ -42,5 +42,14 @@ db_docs:
 db_schema:
 	dbml2sql --postgres -o doc/schema.sql doc/db.dbml
 
-.PHONY:
-	postgres postgresstart createdb dropdb migrateup migratedown sqlc test server mock db_docs db_schema
+proto:
+	del /s pb
+	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative \
+	--go-grpc_out=pb --go-grpc_opt=paths=source_relative \
+	proto/*.proto
+
+evans:
+	evans --host localhost --port 9090 -r repl
+
+
+.PHONY: postgres postgresstart createdb dropdb migrateup migratedown sqlc test server mock db_docs db_schema proto evans

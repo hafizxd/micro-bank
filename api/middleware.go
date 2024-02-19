@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/hafizxd/simple_bank/token"
+	"github.com/hafizxd/micro-bank/token"
 	"net/http"
 	"strings"
 )

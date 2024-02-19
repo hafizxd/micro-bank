@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	db "github.com/hafizxd/simple_bank/db/sqlc"
-	"github.com/hafizxd/simple_bank/token"
+	db "github.com/hafizxd/micro-bank/db/sqlc"
+	"github.com/hafizxd/micro-bank/token"
 	"net/http"
 )
 
