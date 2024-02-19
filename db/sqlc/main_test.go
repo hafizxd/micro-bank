@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"github.com/hafizxd/simple_bank/util"
+	"github.com/hafizxd/micro-bank/util"
 	_ "github.com/lib/pq"
 	"log"
 	"os"

@@ -2,8 +2,8 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	db "github.com/hafizxd/simple_bank/db/sqlc"
-	"github.com/hafizxd/simple_bank/util"
+	db "github.com/hafizxd/micro-bank/db/sqlc"
+	"github.com/hafizxd/micro-bank/util"
 	"github.com/stretchr/testify/require"
 	"os"
 	"testing"

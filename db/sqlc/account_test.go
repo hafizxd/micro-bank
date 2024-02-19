@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 	"database/sql"
-	"github.com/hafizxd/simple_bank/util"
+	"github.com/hafizxd/micro-bank/util"
 	"testing"
 	"time"
 

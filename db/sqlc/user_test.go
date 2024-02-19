@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"github.com/hafizxd/simple_bank/util"
+	"github.com/hafizxd/micro-bank/util"
 	"github.com/stretchr/testify/require"
 	"testing"
 	"time"

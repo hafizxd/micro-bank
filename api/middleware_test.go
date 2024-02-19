@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/hafizxd/simple_bank/token"
+	"github.com/hafizxd/micro-bank/token"
 	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/http/httptest"

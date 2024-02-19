@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/gin-gonic/gin"
-	db "github.com/hafizxd/simple_bank/db/sqlc"
-	"github.com/hafizxd/simple_bank/token"
+	db "github.com/hafizxd/micro-bank/db/sqlc"
+	"github.com/hafizxd/micro-bank/token"
 	"github.com/lib/pq"
 	"net/http"
 )
