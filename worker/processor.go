@@ -3,7 +3,9 @@ package worker
 import (
 	"context"
 	db "github.com/hafizxd/micro-bank/db/sqlc"
+	"github.com/hafizxd/micro-bank/mail"
 	"github.com/hibiken/asynq"
+	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -19,19 +21,28 @@ type TaskProcessor interface {
 type RedisTaskProcessor struct {
 	server *asynq.Server
 	store  db.Store
+	mailer mail.EmailSender
 }
 
-func NewRedisTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store) TaskProcessor {
-	server := asynq.NewServer(redisOpt, asynq.Config{
-		Queues: map[string]int{
-			QueueCritical: 10,
-			QueueDefault:  5,
+func NewRedisTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store, mailer mail.EmailSender) TaskProcessor {
+	server := asynq.NewServer(
+		redisOpt,
+		asynq.Config{
+			Queues: map[string]int{
+				QueueCritical: 10,
+				QueueDefault:  5,
+			},
+			ErrorHandler: asynq.ErrorHandlerFunc(func(ctx context.Context, task *asynq.Task, err error) {
+				log.Error().Err(err).Type("type", task.Type()).Bytes("payload", task.Payload()).Msg("process task failed")
+			}),
+			Logger: NewLogger(),
 		},
-	})
+	)
 
 	return &RedisTaskProcessor{
 		server: server,
 		store:  store,
+		mailer: mailer,
 	}
 }
 
